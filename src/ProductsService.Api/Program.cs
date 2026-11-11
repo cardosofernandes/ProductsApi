@@ -26,9 +26,11 @@ app
     .UseSerilogRequestLogging();
 
 app.MapAllEndpoints();
-app.MapDocumentation();
-await app.InitializeDatabaseAsync();
 
-app.Run();
+if(app.Environment.IsDevelopment())
+    app.MapDocumentation();
+
+await app.InitializeDatabaseAsync();
+await app.RunAsync();
 
 public partial class Program { }

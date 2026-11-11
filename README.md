@@ -16,13 +16,16 @@ docker compose up --build -d
 |---|---|
 | Products API (Docker) | http://localhost:8080/api/v1/products |
 | Products API (local HTTP profile) | http://localhost:5289/api/v1/products |
-| Scalar API reference (Development) | http://localhost:5289/scalar/v1 |
-| OpenAPI JSON (Development) | http://localhost:5289/openapi/v1.json |
+| Scalar API reference (Docker) | http://localhost:8080/scalar/v1 |
+| Scalar API reference (local HTTP profile) | http://localhost:5289/scalar/v1 |
+| OpenAPI JSON (Docker) | http://localhost:8080/openapi/v1.json |
+| OpenAPI JSON (local HTTP profile) | http://localhost:5289/openapi/v1.json |
 | PostgreSQL (Compose network only) | `postgres:5432`, db `products`, user `products` |
 
 Compose enables `Database__MigrateOnStartup=true`; migrations run before the API starts. The application
 default is `false`. PostgreSQL stores data in the `postgres_data` volume and has no published host port.
-Documentation routes are mapped only in Development and are unavailable in the default Compose environment.
+Documentation routes are mapped only in Development. Compose sets `ASPNETCORE_ENVIRONMENT=Development`,
+so after startup open http://localhost:8080/scalar/v1 to browse and try the API endpoints.
 
 `.env` is ignored by Git and excluded from Docker builds. Changing its password does not update an existing
 PostgreSQL volume; rotate that database's password separately. Replace the former password committed in
