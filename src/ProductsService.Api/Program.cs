@@ -26,10 +26,7 @@ app
     .UseSerilogRequestLogging();
 
 app.MapAllEndpoints();
-
-if (app.Environment.IsDevelopment())
-    app.MapDocumentation();
-
+app.MapDocumentation();
 await app.InitializeDatabaseAsync();
 
 app.Run();
