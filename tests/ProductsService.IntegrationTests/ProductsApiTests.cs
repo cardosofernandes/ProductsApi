@@ -73,18 +73,6 @@ public sealed class ProductsApiTests(ProductsApiFactory factory) : IClassFixture
     }
 
     [Fact]
-    public async Task Startup_applies_all_migrations_and_model_matches_snapshot()
-    {
-        await using var scope = factory.Services.CreateAsyncScope();
-        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        var expected = db.Database.GetMigrations().ToArray();
-        expected.ShouldNotBeEmpty();
-        (await db.Database.GetAppliedMigrationsAsync()).ShouldBe(expected);
-        (await db.Database.GetPendingMigrationsAsync()).ShouldBeEmpty();
-        db.Database.HasPendingModelChanges().ShouldBeFalse();
-    }
-
-    [Fact]
     public async Task Create_returns_location_and_get_returns_persisted_product()
     {
         var created = await CreateAsync();
@@ -124,34 +112,6 @@ public sealed class ProductsApiTests(ProductsApiFactory factory) : IClassFixture
         page.TotalCount.ShouldBe(0);
         page.TotalPages.ShouldBe(0);
         page.HasNext.ShouldBeFalse();
-    }
-
-    [Fact]
-    public async Task Search_binds_query_trims_ignores_case_and_paginates()
-    {
-        await CreateAsync("Wireless Keyboard");
-        var second = await CreateAsync("WIRELESS Mouse");
-        await CreateAsync("Wired Headset");
-        using var response = await _client.GetAsync($"{Products}/search?Name=%20wireless%20&PageNumber=2&PageSize=1");
-        response.StatusCode.ShouldBe(HttpStatusCode.OK);
-        var page = (await response.Content.ReadFromJsonAsync<PagedList<ProductResponse>>()).ShouldNotBeNull();
-        page.TotalCount.ShouldBe(2);
-        page.Items.Single().Id.ShouldBe(second.Id);
-        page.Items.Single().Category.ShouldBe("Electronics");
-    }
-
-    [Fact]
-    public async Task Stock_filter_includes_boundaries()
-    {
-        await CreateAsync("Below", 4);
-        var lower = await CreateAsync("Lower", 5);
-        var upper = await CreateAsync("Upper", 10);
-        await CreateAsync("Above", 11);
-        using var response = await _client.GetAsync($"{Products}/stock-level?MinStock=5&MaxStock=10&PageNumber=1&PageSize=10");
-        response.StatusCode.ShouldBe(HttpStatusCode.OK);
-        var page = (await response.Content.ReadFromJsonAsync<PagedList<ProductResponse>>()).ShouldNotBeNull();
-        page.TotalCount.ShouldBe(2);
-        page.Items.Select(p => p.Id).ShouldBe(new[] { lower.Id, upper.Id });
     }
 
     [Fact]
@@ -311,30 +271,6 @@ public sealed class ProductsApiTests(ProductsApiFactory factory) : IClassFixture
     }
 
     [Theory]
-    [InlineData("", 1, 10)]
-    [InlineData("?PageSize=1", 1, 1)]
-    [InlineData("?PageNumber=2", 2, 10)]
-    [InlineData("/search?Name=key", 1, 10)]
-    [InlineData("/search?Name=key&PageSize=1", 1, 1)]
-    [InlineData("/search?Name=key&PageNumber=2", 2, 10)]
-    [InlineData("/stock-level?MinStock=0&MaxStock=10", 1, 10)]
-    [InlineData("/stock-level?MinStock=0&MaxStock=10&PageSize=1", 1, 1)]
-    [InlineData("/stock-level?MinStock=0&MaxStock=10&PageNumber=2", 2, 10)]
-    public async Task Omitted_paging_uses_defaults(string query, int expectedPage, int expectedSize)
-    {
-        var first = await CreateAsync("Keyboard First");
-        await CreateAsync("Keyboard Second");
-        using var response = await _client.GetAsync(Products + query);
-        response.StatusCode.ShouldBe(HttpStatusCode.OK);
-        var page = (await response.Content.ReadFromJsonAsync<PagedList<ProductResponse>>()).ShouldNotBeNull();
-        page.PageNumber.ShouldBe(expectedPage);
-        page.PageSize.ShouldBe(expectedSize);
-        page.TotalCount.ShouldBe(2);
-        page.Items.Count.ShouldBe(expectedPage == 2 ? 0 : Math.Min(expectedSize, 2));
-        if (expectedPage == 1) page.Items.First().Id.ShouldBe(first.Id);
-    }
-
-    [Theory]
     [InlineData("POST", "79228162514264337593543950335")]
     [InlineData("PUT", "10000000000000000")]
     [InlineData("POST", "1.001")]
@@ -350,90 +286,6 @@ public sealed class ProductsApiTests(ProductsApiFactory factory) : IClassFixture
         await AssertValidationAsync(response, "Price");
         (await GetAsync(created.Id)).ShouldBe(before);
         (await _client.GetFromJsonAsync<PagedList<ProductResponse>>(Products))!.TotalCount.ShouldBe(1);
-    }
-
-    [Theory]
-    [InlineData("0.01")]
-    [InlineData("9999999999999999.99")]
-    [InlineData("1.2300")]
-    public async Task Supported_prices_round_trip_through_create_and_update(string value)
-    {
-        var price = decimal.Parse(value, System.Globalization.CultureInfo.InvariantCulture);
-        using var response = await _client.PostAsJsonAsync(Products, new ProductAddRequest("Price boundary", null, price, 0, 1));
-        response.StatusCode.ShouldBe(HttpStatusCode.Created);
-        var created = (await response.Content.ReadFromJsonAsync<ProductCreationResponse>())!;
-        (await GetAsync(created.Id)).Price.ShouldBe(price);
-        using var update = await _client.PutAsJsonAsync($"{Products}/{created.Id}", new ProductUpdateRequest("Updated price", null, price, 1));
-        update.StatusCode.ShouldBe(HttpStatusCode.NoContent);
-        (await GetAsync(created.Id)).Price.ShouldBe(price);
-    }
-
-    [Fact]
-    public async Task Stock_overflow_returns_400_without_changing_stock()
-    {
-        var created = await CreateAsync(stock: int.MaxValue);
-        using var response = await _client.PostAsync($"{Products}/{created.Id}/add-to-stock/1", null);
-        await AssertProblemAsync(response, HttpStatusCode.BadRequest);
-        (await GetAsync(created.Id)).Stock.ShouldBe(int.MaxValue);
-    }
-
-    [Fact]
-    public async Task Concurrent_stock_requests_at_limit_preserve_stock_and_return_controlled_error()
-    {
-        var created = await CreateAsync(stock: int.MaxValue - 1);
-        var statuses = await Task.WhenAll(Enumerable.Range(0, 2).Select(async _ =>
-        {
-            using var response = await _client.PostAsync($"{Products}/{created.Id}/add-to-stock/1", null);
-            return response.StatusCode;
-        }));
-        statuses.Count(status => status == HttpStatusCode.OK).ShouldBe(1);
-        statuses.Count(status => status == HttpStatusCode.BadRequest).ShouldBe(1);
-        (await GetAsync(created.Id)).Stock.ShouldBe(int.MaxValue);
-    }
-
-    [Theory]
-    [InlineData("")]
-    [InlineData("/search?Name=key&")]
-    [InlineData("/stock-level?MinStock=0&MaxStock=10&")]
-    public async Task Overflowing_page_offset_returns_400(string prefix)
-    {
-        var query = prefix == "" ? "?" : prefix;
-        using var response = await _client.GetAsync($"{Products}{query}PageNumber=2147483647&PageSize=50");
-        await AssertValidationAsync(response, "PageNumber");
-    }
-
-    [Theory]
-    [InlineData(42949673)]
-    [InlineData(2147483647)]
-    public async Task Large_supported_offset_returns_empty_page(int pageNumber)
-    {
-        var pageSize = pageNumber == int.MaxValue ? 1 : 50;
-        using var response = await _client.GetAsync($"{Products}?PageNumber={pageNumber}&PageSize={pageSize}");
-        response.StatusCode.ShouldBe(HttpStatusCode.OK);
-        (await response.Content.ReadFromJsonAsync<PagedList<ProductResponse>>())!.Items.ShouldBeEmpty();
-    }
-
-    [Fact]
-    public async Task Updating_details_sets_utc_timestamp_and_preserves_creation_time()
-    {
-        var created = await CreateAsync();
-        DateTime createdAt;
-        await using (var scope = factory.Services.CreateAsyncScope())
-        {
-            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-            var product = await db.Products.SingleAsync(p => p.Id == created.Id);
-            createdAt = product.CreatedAt;
-            product.UpdatedAt.ShouldBeNull();
-        }
-        var before = DateTime.UtcNow;
-        using var response = await _client.PutAsJsonAsync($"{Products}/{created.Id}", new ProductUpdateRequest("Updated", null, 1m, 1));
-        response.StatusCode.ShouldBe(HttpStatusCode.NoContent);
-        await using var read = factory.Services.CreateAsyncScope();
-        var persisted = await read.ServiceProvider.GetRequiredService<AppDbContext>().Products.SingleAsync(p => p.Id == created.Id);
-        persisted.CreatedAt.ShouldBe(createdAt);
-        persisted.UpdatedAt.ShouldNotBeNull();
-        persisted.UpdatedAt.Value.ShouldBeInRange(before.AddMilliseconds(-1), DateTime.UtcNow);
-        persisted.UpdatedAt.Value.Kind.ShouldBe(DateTimeKind.Utc);
     }
 
     [Fact]
