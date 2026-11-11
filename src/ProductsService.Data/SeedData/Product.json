@@ -1,0 +1,452 @@
+[
+  {
+    "id": 100000,
+    "name": "Wireless Mouse",
+    "description": "Ergonomic mouse with adjustable sensitivity.",
+    "price": 24.99,
+    "stock": 60,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1276510Z"
+  },
+  {
+    "id": 100001,
+    "name": "Power Bank 10000mAh",
+    "description": "Portable battery with USB-A and USB-C outputs.",
+    "price": 22.5,
+    "stock": 75,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283410Z"
+  },
+  {
+    "id": 100002,
+    "name": "Portable SSD 1TB",
+    "description": "Compact solid-state drive with USB-C connectivity.",
+    "price": 89.99,
+    "stock": 20,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283450Z"
+  },
+  {
+    "id": 100003,
+    "name": "Bluetooth Headphones",
+    "description": "Over-ear headphones with a rechargeable battery.",
+    "price": 69.99,
+    "stock": 45,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283460Z"
+  },
+  {
+    "id": 100004,
+    "name": "Portable Bluetooth Speaker",
+    "description": "Rechargeable speaker for indoor and outdoor use.",
+    "price": 39.99,
+    "stock": 40,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283470Z"
+  },
+  {
+    "id": 100005,
+    "name": "Stainless Steel Kettle",
+    "description": "Electric kettle with a 1.7-litre capacity.",
+    "price": 34.99,
+    "stock": 24,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283480Z"
+  },
+  {
+    "id": 100006,
+    "name": "Oxford Shirt White L",
+    "description": "White button-down shirt in size L.",
+    "price": 34.99,
+    "stock": 25,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283490Z"
+  },
+  {
+    "id": 100007,
+    "name": "USB Microphone",
+    "description": "Desktop microphone for calls and recordings.",
+    "price": 59.99,
+    "stock": 18,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283500Z"
+  },
+  {
+    "id": 100008,
+    "name": "Leather Belt Brown M",
+    "description": "Brown leather belt in size M.",
+    "price": 22.99,
+    "stock": 20,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283510Z"
+  },
+  {
+    "id": 100009,
+    "name": "LED Desk Lamp",
+    "description": "Dimmable desk lamp with adjustable colour temperature.",
+    "price": 27.99,
+    "stock": 33,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283520Z"
+  },
+  {
+    "id": 100010,
+    "name": "USB-C Charger 65W",
+    "description": "Compact wall charger for compatible devices.",
+    "price": 29.99,
+    "stock": 65,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283530Z"
+  },
+  {
+    "id": 100011,
+    "name": "Smart Plug",
+    "description": "Wi-Fi plug with scheduling support.",
+    "price": 14.99,
+    "stock": 48,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283530Z"
+  },
+  {
+    "id": 100012,
+    "name": "Bath Towel Grey",
+    "description": "Soft grey cotton bath towel.",
+    "price": 16.99,
+    "stock": 65,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283540Z"
+  },
+  {
+    "id": 100013,
+    "name": "Zip Hoodie Black L",
+    "description": "Black zip-front hoodie in size L.",
+    "price": 36.99,
+    "stock": 30,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283550Z"
+  },
+  {
+    "id": 100014,
+    "name": "Cotton T-Shirt White L",
+    "description": "White cotton crew-neck T-shirt in size L.",
+    "price": 12.99,
+    "stock": 70,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283560Z"
+  },
+  {
+    "id": 100015,
+    "name": "Rain Jacket Green L",
+    "description": "Lightweight green rain jacket in size L.",
+    "price": 59.99,
+    "stock": 15,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283570Z"
+  },
+  {
+    "id": 100016,
+    "name": "Full HD Webcam",
+    "description": "USB webcam with a built-in microphone.",
+    "price": 34.99,
+    "stock": 30,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283580Z"
+  },
+  {
+    "id": 100017,
+    "name": "Two-Slice Toaster",
+    "description": "Compact toaster with adjustable browning settings.",
+    "price": 29.99,
+    "stock": 19,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283590Z"
+  },
+  {
+    "id": 100018,
+    "name": "Running Shorts Black M",
+    "description": "Lightweight black sports shorts in size M.",
+    "price": 19.99,
+    "stock": 45,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283600Z"
+  },
+  {
+    "id": 100019,
+    "name": "Ceramic Mug Set of 4",
+    "description": "Four ceramic mugs with a 300ml capacity each.",
+    "price": 17.99,
+    "stock": 44,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283610Z"
+  },
+  {
+    "id": 100020,
+    "name": "Tablet Sleeve",
+    "description": "Padded sleeve for a ten-inch tablet.",
+    "price": 18.99,
+    "stock": 0,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283620Z"
+  },
+  {
+    "id": 100021,
+    "name": "Sports Leggings Black S",
+    "description": "Stretch sports leggings in size S.",
+    "price": 27.99,
+    "stock": 38,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283640Z"
+  },
+  {
+    "id": 100022,
+    "name": "Dinner Plate Set of 4",
+    "description": "Four white ceramic dinner plates.",
+    "price": 27.99,
+    "stock": 28,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283640Z"
+  },
+  {
+    "id": 100023,
+    "name": "Chef Knife 20cm",
+    "description": "Kitchen knife with a twenty-centimetre blade.",
+    "price": 19.99,
+    "stock": 35,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283650Z"
+  },
+  {
+    "id": 100024,
+    "name": "Cutlery Set 16 Pieces",
+    "description": "Stainless steel cutlery set for four people.",
+    "price": 29.99,
+    "stock": 21,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283660Z"
+  },
+  {
+    "id": 100025,
+    "name": "Cotton T-Shirt Black M",
+    "description": "Black cotton crew-neck T-shirt in size M.",
+    "price": 12.99,
+    "stock": 80,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283670Z"
+  },
+  {
+    "id": 100026,
+    "name": "Cotton Socks Pack of 5",
+    "description": "Five pairs of everyday cotton-blend socks.",
+    "price": 9.99,
+    "stock": 120,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283680Z"
+  },
+  {
+    "id": 100027,
+    "name": "Bamboo Chopping Board",
+    "description": "Bamboo board for everyday food preparation.",
+    "price": 14.99,
+    "stock": 50,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283690Z"
+  },
+  {
+    "id": 100028,
+    "name": "Chino Trousers Beige 34",
+    "description": "Beige chinos with a 34-inch waist.",
+    "price": 39.99,
+    "stock": 22,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283700Z"
+  },
+  {
+    "id": 100029,
+    "name": "Polo Shirt Navy M",
+    "description": "Navy short-sleeve polo shirt in size M.",
+    "price": 24.99,
+    "stock": 35,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283700Z"
+  },
+  {
+    "id": 100030,
+    "name": "Non-Stick Frying Pan 28cm",
+    "description": "Twenty-eight-centimetre pan with a non-stick coating.",
+    "price": 25.99,
+    "stock": 32,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283710Z"
+  },
+  {
+    "id": 100031,
+    "name": "Cushion Cover Beige",
+    "description": "Beige cushion cover with a concealed zip.",
+    "price": 9.99,
+    "stock": 58,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283720Z"
+  },
+  {
+    "id": 100032,
+    "name": "Denim Jeans Blue 32",
+    "description": "Straight-leg blue jeans with a 32-inch waist.",
+    "price": 44.99,
+    "stock": 40,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283730Z"
+  },
+  {
+    "id": 100033,
+    "name": "Baseball Cap Navy",
+    "description": "Navy cap with an adjustable fastening.",
+    "price": 14.99,
+    "stock": 42,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283740Z"
+  },
+  {
+    "id": 100034,
+    "name": "Fleece Scarf Burgundy",
+    "description": "Soft burgundy scarf for cold weather.",
+    "price": 13.99,
+    "stock": 0,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283750Z"
+  },
+  {
+    "id": 100035,
+    "name": "Wireless Earbuds",
+    "description": "In-ear headphones with a charging case.",
+    "price": 44.9,
+    "stock": 55,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283760Z"
+  },
+  {
+    "id": 100036,
+    "name": "Cotton Tea Towels Pack of 3",
+    "description": "Three absorbent cotton kitchen towels.",
+    "price": 8.99,
+    "stock": 90,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283770Z"
+  },
+  {
+    "id": 100037,
+    "name": "Crew-Neck Jumper Navy M",
+    "description": "Navy knitted jumper in size M.",
+    "price": 29.99,
+    "stock": 18,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283770Z"
+  },
+  {
+    "id": 100038,
+    "name": "Winter Beanie Grey",
+    "description": "Grey knitted beanie with a folded cuff.",
+    "price": 11.5,
+    "stock": 55,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283780Z"
+  },
+  {
+    "id": 100039,
+    "name": "Glass Storage Containers Set",
+    "description": "Three food-storage containers with fitted lids.",
+    "price": 24.99,
+    "stock": 40,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283790Z"
+  },
+  {
+    "id": 100040,
+    "name": "HDMI Cable 2m",
+    "description": "Two-metre HDMI cable for displays and televisions.",
+    "price": 9.99,
+    "stock": 100,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283800Z"
+  },
+  {
+    "id": 100041,
+    "name": "Desk Organiser",
+    "description": "Compartment organiser for stationery and accessories.",
+    "price": 12.99,
+    "stock": 46,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283860Z"
+  },
+  {
+    "id": 100042,
+    "name": "Laundry Basket 40L",
+    "description": "Ventilated laundry basket with carry handles.",
+    "price": 18.5,
+    "stock": 23,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283870Z"
+  },
+  {
+    "id": 100043,
+    "name": "Laptop Stand",
+    "description": "Adjustable aluminium stand for laptops.",
+    "price": 32.0,
+    "stock": 26,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283870Z"
+  },
+  {
+    "id": 100044,
+    "name": "USB-C Hub",
+    "description": "Multiport hub with HDMI and USB connections.",
+    "price": 39.95,
+    "stock": 28,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283880Z"
+  },
+  {
+    "id": 100045,
+    "name": "Saucepan 2L",
+    "description": "Two-litre stainless steel saucepan with a lid.",
+    "price": 22.99,
+    "stock": 27,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283890Z"
+  },
+  {
+    "id": 100046,
+    "name": "Wireless Keyboard",
+    "description": "Compact wireless keyboard with quiet keys.",
+    "price": 49.99,
+    "stock": 35,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283900Z"
+  },
+  {
+    "id": 100047,
+    "name": "27-inch Monitor",
+    "description": "Full HD monitor with an adjustable stand.",
+    "price": 159.99,
+    "stock": 12,
+    "categoryId": 1,
+    "createdAt": "2026-11-10T21:55:53.1283910Z"
+  },
+  {
+    "id": 100048,
+    "name": "Pullover Hoodie Grey M",
+    "description": "Grey hooded sweatshirt in size M.",
+    "price": 32.99,
+    "stock": 50,
+    "categoryId": 2,
+    "createdAt": "2026-11-10T21:55:53.1283920Z"
+  },
+  {
+    "id": 100049,
+    "name": "Fleece Throw Blanket",
+    "description": "Soft fleece blanket for a sofa or bed.",
+    "price": 21.99,
+    "stock": 37,
+    "categoryId": 3,
+    "createdAt": "2026-11-10T21:55:53.1283930Z"
+  }
+]

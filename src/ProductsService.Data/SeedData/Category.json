@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Electronics",
+    "createdAt": "2026-11-10T21:55:53.1214670Z"
+  },
+  {
+    "id": 2,
+    "name": "Clothing",
+    "createdAt": "2026-11-10T21:55:53.1223750Z"
+  },
+  {
+    "id": 3,
+    "name": "Home and Kitchen",
+    "createdAt": "2026-11-10T21:55:53.1223850Z"
+  }
+]
